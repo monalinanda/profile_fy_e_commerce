@@ -6,10 +6,10 @@
         "use": "@vercel/node"
       },
       {
-        "src": "package.json",
+        "src": "vite.config.js",
         "use": "@vercel/static-build",
         "config": {
-          "distDir": "build"
+          "distDir": "dist"
         }
       }
     ],
@@ -20,7 +20,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/"
+        "dest": "/index.html"
       }
     ]
   }
