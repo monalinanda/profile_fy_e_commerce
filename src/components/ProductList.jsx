@@ -19,7 +19,7 @@ const ProductList = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:3000/products?name_like=${debouncedSearchTerm}`
+        `https://profile-fyi-backend-xi.vercel.app/products?name_like=${debouncedSearchTerm}`
       );
       if (!response.ok) {
         throw new Error("Failed to fetch products");
