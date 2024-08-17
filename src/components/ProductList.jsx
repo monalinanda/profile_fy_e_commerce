@@ -7,6 +7,7 @@ import ShimmerLoading from "./ShimmerLoading";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -14,28 +15,41 @@ const ProductList = () => {
   const { cart } = useCartContext();
   useFetchCart();
 
-  //fetch Products from local db.json file *
+  // Fetch all products from local db.json file
   const fetchProducts = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `https://profile-fyi-backend-xi.vercel.app/products?name_like=${debouncedSearchTerm}`
-      );
+      const response = await fetch("http://localhost:3000/products");
       if (!response.ok) {
         throw new Error("Failed to fetch products");
       }
       const data = await response.json();
       setProducts(data);
+      setFilteredProducts(data);
     } catch (error) {
+      console.error("Error fetching products:", error);
     } finally {
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
     fetchProducts();
-  }, [debouncedSearchTerm]);
+  }, []);
 
-  //input field functionality for searvh products
+  // Filter products based on search term
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    } else {
+      setFilteredProducts(products);
+    }
+  }, [debouncedSearchTerm, products]);
+
+  // Input field functionality for search products
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
   };
@@ -56,7 +70,7 @@ const ProductList = () => {
         <ShimmerLoading />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}
@@ -65,7 +79,7 @@ const ProductList = () => {
           ))}
         </div>
       )}
-      {!isLoading && products.length === 0 && (
+      {!isLoading && filteredProducts.length === 0 && (
         <div className="text-center text-gray-500">No products found</div>
       )}
     </div>
