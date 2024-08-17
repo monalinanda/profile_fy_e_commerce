@@ -119,6 +119,24 @@ export const CartContext = ({ children }) => {
     return Math.max(subtotal - discountAmount, 0);
   };
 
+  // " Delete all cart Items after Checkout" functionality
+  const emptyCart = async () => {
+    try {
+      const response = await fetch("http://localhost:3000/cart", {
+        method: "DELETE",
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to empty cart");
+      }
+      setCart([]);
+      setSelectedId(null);
+    } catch (error) {
+      console.error("Error emptying cart:", error);
+      throw error;
+    }
+  };
+  
   //"Calculate Cart Total items" functionality"
   const getTotalItems = () => {
     return cart.reduce((total, item) => total + item.quantity, 0);
@@ -139,6 +157,7 @@ export const CartContext = ({ children }) => {
         totalPriceBeforeDiscount,
         products,
         setCart,
+        emptyCart
       }}
     >
       {children}
