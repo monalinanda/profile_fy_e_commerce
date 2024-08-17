@@ -12,6 +12,7 @@ const Cart = () => {
   useFetchCart();
   const {
     cart,
+    emptyCart,
     removeFromCart,
     updateQuantity,
     applyDiscount,
@@ -48,7 +49,8 @@ const Cart = () => {
     setSelectedCoupon("");
   };
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
+    await emptyCart()
     navigate("/thank-you");
   };
 
