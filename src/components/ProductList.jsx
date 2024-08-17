@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import useFetchCart from "../utils/useFetchCart";
 import { useCartContext } from "../utils/CartContext";
 import useSearch from "../utils/useSearch";
-import Shimmer from "./shimmer";
+import ShimmerLoading from "./ShimmerLoading";
 
 const ProductList = () => {
   const [products, setProducts] = useState([]);
@@ -53,7 +53,7 @@ const ProductList = () => {
         />
       </div>
       {isLoading ? (
-        <Shimmer />
+        <ShimmerLoading />
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
