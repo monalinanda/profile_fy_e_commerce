@@ -21,7 +21,7 @@ export const CartContext = ({ children }) => {
           quantity: quantity,
         };
         const response = await fetch(
-          `http://localhost:3000/cart/${product.id}`,
+          `https://profile-fyi-backend-xi.vercel.app/cart/${product.id}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -36,7 +36,7 @@ export const CartContext = ({ children }) => {
         setSelectedId(product.id);
       } else {
         const newItem = { ...product, quantity };
-        const response = await fetch("http://localhost:3000/cart", {
+        const response = await fetch("https://profile-fyi-backend-xi.vercel.app/cart", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(newItem),
@@ -57,7 +57,7 @@ export const CartContext = ({ children }) => {
   // "Remove Items From Cart" functionality
   const removeFromCart = async (productId) => {
     try {
-      const response = await fetch(`http://localhost:3000/cart/${productId}`, {
+      const response = await fetch(`https://profile-fyi-backend-xi.vercel.app/cart/${productId}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -77,7 +77,7 @@ export const CartContext = ({ children }) => {
       if (item) {
         const updatedItem = { ...item, quantity: newQuantity };
         const response = await fetch(
-          `http://localhost:3000/cart/${productId}`,
+          `https://profile-fyi-backend-xi.vercel.app/cart/${productId}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
