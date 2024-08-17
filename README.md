@@ -1,7 +1,8 @@
 
 # For backend
 - used express and mongo Db
-- url : ("https://profile-fyi-backend.vercel.app")
+- vercel url : "https://profile-fyi-backend.vercel.app"
+- github code link : "https://github.com/monalinanda/profile.fyi-backend"
 
 # For Frontend
 - React Vite
