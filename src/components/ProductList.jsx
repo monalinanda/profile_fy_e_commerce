@@ -19,7 +19,7 @@ const ProductList = () => {
   const fetchProducts = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:3000/products");
+      const response = await fetch("https://profile-fyi-backend.vercel.app/products");
       if (!response.ok) {
         throw new Error("Failed to fetch products");
       }

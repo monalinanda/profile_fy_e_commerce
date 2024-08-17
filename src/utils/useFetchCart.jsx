@@ -7,7 +7,7 @@ const useFetchCart = () => {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const response = await fetch("http://localhost:3000/cart");
+        const response = await fetch("https://profile-fyi-backend.vercel.app/cart");
         if (!response.ok) {
           throw new Error("Failed to fetch cart");
         }

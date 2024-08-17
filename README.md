@@ -1,8 +1,7 @@
 
 # For backend
-- used json-server 
-- db.json file
-- to run in local -> (npx json-server --watch db.json)
+- used express and mongo Db
+- url : ("https://profile-fyi-backend.vercel.app")
 
 # For Frontend
 - React Vite
