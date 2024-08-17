@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 
 const ProductCard = ({ product, selectedCartProduct }) => {
   const { addToCart, removeFromCart } = useCartContext();
-  useFetchCart();
 
   //"Add to Cart functionality "
   const handleAddToCart = (product, quantity) => {

@@ -29,7 +29,6 @@ function App() {
       <CartContext>
         <div className=" m-0 p-0 w-screen h-screen overflow-scroll">
           <RouterProvider router={appRouter} />
-          hii
         </div>
       </CartContext>
     </>
